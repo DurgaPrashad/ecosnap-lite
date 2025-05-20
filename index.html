@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSnap Lite - Environmental Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>EcoSnap Lite</h1>
+                <p class="tagline">Visual Environmental Tracker</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="upload.html">Upload</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Document Environmental Changes</h2>
+                    <p>Track and compare environmental changes over time with before and after images. Help raise awareness about our changing planet.</p>
+                    <div class="cta-buttons">
+                        <a href="upload.html" class="btn btn-primary">Upload Images</a>
+                        <a href="gallery.html" class="btn btn-secondary">View Gallery</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="comparison-demo">
+                        <div class="comparison-container">
+                            <img src="https://images.unsplash.com/photo-1572204292164-b35ba943fca7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Forest before" class="comparison-image">
+                            <div class="comparison-overlay">
+                                <img src="https://images.unsplash.com/photo-1542401886-65d6c61db217?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Forest after">
+                                <div class="comparison-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📸</div>
+                        <h3>Upload Images</h3>
+                        <p>Upload before and after images of the same location to document changes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📍</div>
+                        <h3>Tag Locations</h3>
+                        <p>Add location names and dates to organize your environmental snapshots.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Compare Changes</h3>
+                        <p>Use the interactive slider to compare before and after images side by side.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Save Locally</h3>
+                        <p>All data is stored in your browser - no accounts or cloud storage needed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EcoSnap Lite - A Static Environmental Tracker</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Initialize the demo slider on the homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            initComparisonSlider(document.querySelector('.comparison-container'));
+        });
+    </script>
+</body>
+</html>

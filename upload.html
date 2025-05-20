@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload - EcoSnap Lite</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>EcoSnap Lite</h1>
+                <p class="tagline">Visual Environmental Tracker</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="upload.html" class="active">Upload</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="upload-section">
+            <div class="container">
+                <h2>Upload Before & After Images</h2>
+                <p class="section-description">Document environmental changes by uploading before and after images of the same location.</p>
+                
+                <form id="upload-form" class="upload-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="location">Location Name</label>
+                            <input type="text" id="location" name="location" placeholder="e.g., Pine Creek Forest" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date-before">Before Date</label>
+                            <input type="date" id="date-before" name="date-before" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date-after">After Date</label>
+                            <input type="date" id="date-after" name="date-after" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Notes (Optional)</label>
+                            <textarea id="notes" name="notes" placeholder="Add any observations or details about the changes..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="image-upload-container">
+                        <div class="image-upload-box">
+                            <h3>Before Image</h3>
+                            <div class="image-preview" id="before-preview">
+                                <div class="upload-placeholder">
+                                    <span class="upload-icon">+</span>
+                                    <p>Click to select image</p>
+                                </div>
+                                <img id="before-image-preview" class="hidden">
+                            </div>
+                            <input type="file" id="before-image" name="before-image" accept="image/*" class="hidden" required>
+                        </div>
+                        
+                        <div class="image-upload-box">
+                            <h3>After Image</h3>
+                            <div class="image-preview" id="after-preview">
+                                <div class="upload-placeholder">
+                                    <span class="upload-icon">+</span>
+                                    <p>Click to select image</p>
+                                </div>
+                                <img id="after-image-preview" class="hidden">
+                            </div>
+                            <input type="file" id="after-image" name="after-image" accept="image/*" class="hidden" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Entry</button>
+                        <button type="reset" class="btn btn-secondary">Clear Form</button>
+                    </div>
+                </form>
+                
+                <div id="success-message" class="success-message hidden">
+                    <h3>Entry Saved Successfully!</h3>
+                    <p>Your before and after images have been saved to your local browser storage.</p>
+                    <div class="success-actions">
+                        <a href="gallery.html" class="btn btn-primary">View in Gallery</a>
+                        <button class="btn btn-secondary" id="add-another">Add Another Entry</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EcoSnap Lite - A Static Environmental Tracker</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up image upload previews
+            setupImageUpload('before-preview', 'before-image', 'before-image-preview');
+            setupImageUpload('after-preview', 'after-image', 'after-image-preview');
+            
+            // Handle form submission
+            document.getElementById('upload-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveEntry();
+            });
+            
+            // Handle "Add Another Entry" button
+            document.getElementById('add-another').addEventListener('click', function() {
+                document.getElementById('success-message').classList.add('hidden');
+                document.getElementById('upload-form').classList.remove('hidden');
+                document.getElementById('upload-form').reset();
+                document.getElementById('before-image-preview').classList.add('hidden');
+                document.getElementById('after-image-preview').classList.add('hidden');
+                document.querySelectorAll('.upload-placeholder').forEach(el => el.classList.remove('hidden'));
+            });
+        });
+    </script>
+</body>
+</html>

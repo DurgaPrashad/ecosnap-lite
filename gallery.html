@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - EcoSnap Lite</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>EcoSnap Lite</h1>
+                <p class="tagline">Visual Environmental Tracker</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="upload.html">Upload</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="gallery-section">
+            <div class="container">
+                <div class="gallery-header">
+                    <h2>Your Environmental Snapshots</h2>
+                    <div class="gallery-actions">
+                        <button id="export-all" class="btn btn-secondary">Export All Data</button>
+                        <button id="clear-all" class="btn btn-danger">Clear All Data</button>
+                    </div>
+                </div>
+                
+                <div id="empty-gallery" class="empty-gallery">
+                    <div class="empty-icon">🏞️</div>
+                    <h3>No Entries Yet</h3>
+                    <p>Start documenting environmental changes by uploading before and after images.</p>
+                    <a href="upload.html" class="btn btn-primary">Upload Images</a>
+                </div>
+                
+                <div id="gallery-grid" class="gallery-grid"></div>
+            </div>
+        </section>
+        
+        <!-- Modal for full-screen comparison view -->
+        <div id="comparison-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3 id="modal-location"></h3>
+                <div class="modal-dates">
+                    <span id="modal-date-before"></span> to <span id="modal-date-after"></span>
+                </div>
+                
+                <div class="comparison-container modal-comparison">
+                    <img id="modal-before" class="comparison-image" alt="Before image">
+                    <div class="comparison-overlay">
+                        <img id="modal-after" alt="After image">
+                        <div class="comparison-slider"></div>
+                    </div>
+                </div>
+                
+                <div class="modal-notes" id="modal-notes"></div>
+                
+                <div class="modal-actions">
+                    <button id="download-comparison" class="btn btn-primary">Download Comparison</button>
+                    <button id="delete-entry" class="btn btn-danger">Delete Entry</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EcoSnap Lite - A Static Environmental Tracker</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load and display gallery entries
+            loadGallery();
+            
+            // Set up event listeners for gallery actions
+            document.getElementById('export-all').addEventListener('click', exportAllData);
+            document.getElementById('clear-all').addEventListener('click', clearAllData);
+            
+            // Set up modal event listeners
+            document.querySelector('.close-modal').addEventListener('click', closeModal);
+            document.getElementById('download-comparison').addEventListener('click', downloadComparison);
+            document.getElementById('delete-entry').addEventListener('click', deleteCurrentEntry);
+            
+            // Close modal when clicking outside of it
+            window.addEventListener('click', function(e) {
+                if (e.target === document.getElementById('comparison-modal')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
